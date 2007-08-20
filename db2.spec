@@ -37,7 +37,8 @@ This library used to be part of the glibc package.
 %package -n %{libname}
 Summary: The BSD database library for C (version 2).
 Group: System/Libraries
-PreReq: /sbin/ldconfig
+Requires(post): ldconfig
+Requires(postun): ldconfig
 Obsoletes: %{name}
 Provides: %{name} = %{version}-%{release}
 
