@@ -6,7 +6,7 @@
 %define libname_orig	libdb%{major}
 %define libname		%mklibname db %{major}
 
-Summary: The BSD database library for C (version 2).
+Summary: The BSD database library for C (version 2)
 Name: %{name}
 Version: %{version}
 Release: %{release}
@@ -35,7 +35,7 @@ embedded database support for both traditional and client/server applications.
 This library used to be part of the glibc package.
 
 %package -n %{libname}
-Summary: The BSD database library for C (version 2).
+Summary: The BSD database library for C (version 2)
 Group: System/Libraries
 Obsoletes: %{name}
 Provides: %{name} = %{version}-%{release}
@@ -46,7 +46,7 @@ embedded database support for both traditional and client/server applications.
 This library used to be part of the glibc package.
 
 %package -n %{libname}-devel
-Summary: Development libs/header files for Berkeley DB (version 2) library.
+Summary: Development libs/header files for Berkeley DB (version 2) library
 Group: Development/C
 Requires: %{libname} = %{version}-%{release}
 Obsoletes: %{name}-devel
