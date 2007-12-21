@@ -24,6 +24,7 @@ Patch6: db2-deps.patch
 URL: http://www.sleepycat.com
 License: BSD
 Group: System/Libraries
+BuildRoot: %{_tmppath}/%{name}-root
 %ifnarch ia64
 Conflicts: glibc < 2.1.90
 %endif
