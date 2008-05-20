@@ -1,6 +1,6 @@
 %define name  db2
 %define version 2.4.14
-%define release %mkrel 18
+%define release %mkrel 19
 
 %define major		2
 %define libname_orig	libdb%{major}
@@ -24,7 +24,7 @@ Patch6: db2-deps.patch
 URL: http://www.sleepycat.com
 License: BSD
 Group: System/Libraries
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %ifnarch ia64
 Conflicts: glibc < 2.1.90
 %endif
