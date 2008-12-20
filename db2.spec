@@ -1,6 +1,6 @@
 %define name  db2
 %define version 2.4.14
-%define release %mkrel 20
+%define release %mkrel 21
 
 %define major		2
 %define libname_orig	libdb%{major}
@@ -12,7 +12,7 @@ Version: %{version}
 Release: %{release}
 #Source: http://www.sleepycat.com/update/2.7.7/db-2.7.7.tar.gz
 # Taken from glibc 2.1.3
-Source: %{name}-glibc-2.1.3.tar.bz2
+Source0: %{name}-glibc-2.1.3.tar.bz2
 # Patch to make it standalone
 Patch0: db2-glibc-2.1.3.patch
 Patch1: db2-2.4.14-db2.patch
@@ -21,6 +21,7 @@ Patch3: db2-gcc34.patch
 Patch4: db2-64bit-fixes.patch
 Patch5:	db2-sparc64-Makefile-fPIC.patch
 Patch6: db2-deps.patch
+Patch7: db2-LDFLAGS.diff
 URL: http://www.sleepycat.com
 License: BSD
 Group: System/Libraries
@@ -75,9 +76,10 @@ building programs which use Berkeley DB.
 %patch5 -p1 -b .sparc64
 %endif
 %patch6 -p1 -b .deps
+%patch7 -p0 -b .LDFLAGS
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" %make
+CFLAGS="%{optflags}" %make LDFLAGS="%{ldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
