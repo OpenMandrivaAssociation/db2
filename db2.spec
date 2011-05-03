@@ -1,6 +1,6 @@
 %define name  db2
 %define version 2.4.14
-%define release %mkrel 24
+%define release %mkrel 25
 
 %define major		2
 %define libname_orig	libdb%{major}
