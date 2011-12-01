@@ -82,29 +82,29 @@ building programs which use Berkeley DB.
 CFLAGS="%{optflags}" %make LDFLAGS="%{ldflags}"
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_includedir}/db2
-mkdir -p $RPM_BUILD_ROOT%{_libdir}
-mkdir -p $RPM_BUILD_ROOT%{_bindir}
+rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_includedir}/db2
+mkdir -p %{buildroot}%{_libdir}
+mkdir -p %{buildroot}%{_bindir}
 
 # XXX this causes all symbols to be deleted from the shared library
 #strip -R .comment libdb2.so.3
-install -m644 libdb2.a			$RPM_BUILD_ROOT/%{_libdir}/libdb2.a
-install -m755 libdb2.so.3		$RPM_BUILD_ROOT/%{_libdir}/libdb2.so.3
-ln -sf libdb2.so.3 			$RPM_BUILD_ROOT/%{_libdir}/libdb2.so
-ln -sf libdb2.a				$RPM_BUILD_ROOT/%{_libdir}/libndbm.a
-ln -sf libdb2.so.3			$RPM_BUILD_ROOT/%{_libdir}/libndbm.so
+install -m644 libdb2.a			%{buildroot}/%{_libdir}/libdb2.a
+install -m755 libdb2.so.3		%{buildroot}/%{_libdir}/libdb2.so.3
+ln -sf libdb2.so.3 			%{buildroot}/%{_libdir}/libdb2.so
+ln -sf libdb2.a				%{buildroot}/%{_libdir}/libndbm.a
+ln -sf libdb2.so.3			%{buildroot}/%{_libdir}/libndbm.so
 
-install -m644 db.h			$RPM_BUILD_ROOT/%{_includedir}/db2
-install -m644 db_185.h			$RPM_BUILD_ROOT/%{_includedir}/db2
+install -m644 db.h			%{buildroot}/%{_includedir}/db2
+install -m644 db_185.h			%{buildroot}/%{_includedir}/db2
 for p in db_archive db_checkpoint db_deadlock db_dump db_load \
 	 db_printlog db_recover db_stat; do
 	q="`echo $p | sed -e 's,^db_,db2_,'`"
-	install -s -m755 $p		$RPM_BUILD_ROOT/%{_bindir}/$q
+	install -s -m755 $p		%{buildroot}/%{_bindir}/$q
 done
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
