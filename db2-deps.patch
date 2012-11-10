@@ -1,0 +1,15 @@
+--- db2/Makefile.deps	2005-08-09 00:33:51.000000000 -0400
++++ db2/Makefile	2005-08-09 00:35:10.000000000 -0400
+@@ -76,10 +76,10 @@ libdb2.so$(libdb2.so-version): $(patsubs
+ 	$(CC) -Wl,-O1 -Wl,--version-script=Versions -Wl,-soname=libdb.so$(libdb2.so-version) -shared -o $@ $^
+ 	ln -sf $@ libdb2.so
+ 
+-$(others): %: %.o
++$(others): %: %.o libdb2.a
+ 	$(CC) -o $@ $< -L. -ldb2
+ 
+-$(others2): %: %.o
++$(others2): %: %.o libdb2.a
+ 	$(CC) -o $@ $< $(extra-objs) -L. -ldb2
+ 
+ clean:

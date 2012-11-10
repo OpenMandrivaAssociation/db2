@@ -1,0 +1,11 @@
+--- db2/Makefile.sparc64	2004-11-27 03:26:38 -0500
++++ db2/Makefile	2004-11-27 03:20:45 -0500
+@@ -65,7 +65,7 @@
+ %.o: %.c
+ 	$(CC) $(CFLAGS) -c -g -o $@ $<
+ %.os: %.c
+-	$(CC) $(CFLAGS) -c -fpic -o $@ $<
++	$(CC) $(CFLAGS) -c -fPIC -o $@ $<
+ 
+ libdb2.a: $(patsubst %,%.o,$(libdb2-routines))
+ 	rm -f $@
