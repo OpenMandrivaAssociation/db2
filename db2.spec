@@ -82,29 +82,29 @@ building programs which use Berkeley DB.
 CFLAGS="%{optflags}" %make LDFLAGS="%{ldflags}"
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_includedir}/db2
-mkdir -p %{buildroot}%{_libdir}
-mkdir -p %{buildroot}%{_bindir}
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT%{_includedir}/db2
+mkdir -p $RPM_BUILD_ROOT%{_libdir}
+mkdir -p $RPM_BUILD_ROOT%{_bindir}
 
 # XXX this causes all symbols to be deleted from the shared library
 #strip -R .comment libdb2.so.3
-install -m644 libdb2.a			%{buildroot}/%{_libdir}/libdb2.a
-install -m755 libdb2.so.3		%{buildroot}/%{_libdir}/libdb2.so.3
-ln -sf libdb2.so.3 			%{buildroot}/%{_libdir}/libdb2.so
-ln -sf libdb2.a				%{buildroot}/%{_libdir}/libndbm.a
-ln -sf libdb2.so.3			%{buildroot}/%{_libdir}/libndbm.so
+install -m644 libdb2.a			$RPM_BUILD_ROOT/%{_libdir}/libdb2.a
+install -m755 libdb2.so.3		$RPM_BUILD_ROOT/%{_libdir}/libdb2.so.3
+ln -sf libdb2.so.3 			$RPM_BUILD_ROOT/%{_libdir}/libdb2.so
+ln -sf libdb2.a				$RPM_BUILD_ROOT/%{_libdir}/libndbm.a
+ln -sf libdb2.so.3			$RPM_BUILD_ROOT/%{_libdir}/libndbm.so
 
-install -m644 db.h			%{buildroot}/%{_includedir}/db2
-install -m644 db_185.h			%{buildroot}/%{_includedir}/db2
+install -m644 db.h			$RPM_BUILD_ROOT/%{_includedir}/db2
+install -m644 db_185.h			$RPM_BUILD_ROOT/%{_includedir}/db2
 for p in db_archive db_checkpoint db_deadlock db_dump db_load \
 	 db_printlog db_recover db_stat; do
 	q="`echo $p | sed -e 's,^db_,db2_,'`"
-	install -s -m755 $p		%{buildroot}/%{_bindir}/$q
+	install -s -m755 $p		$RPM_BUILD_ROOT/%{_bindir}/$q
 done
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -136,4 +136,83 @@ rm -rf %{buildroot}
 %{_bindir}/db2_printlog
 %{_bindir}/db2_recover
 %{_bindir}/db2_stat
+
+
+
+%changelog
+* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 2.4.14-25mdv2011.0
++ Revision: 663754
+- mass rebuild
+
+* Thu Dec 02 2010 Oden Eriksson <oeriksson@mandriva.com> 2.4.14-24mdv2011.0
++ Revision: 604777
+- rebuild
+
+* Sun Mar 14 2010 Oden Eriksson <oeriksson@mandriva.com> 2.4.14-23mdv2010.1
++ Revision: 518994
+- rebuild
+
+* Sun Aug 09 2009 Oden Eriksson <oeriksson@mandriva.com> 2.4.14-22mdv2010.0
++ Revision: 413332
+- rebuild
+
+* Sat Dec 20 2008 Oden Eriksson <oeriksson@mandriva.com> 2.4.14-21mdv2009.1
++ Revision: 316541
+- use %%{ldflags}
+
+* Wed Aug 06 2008 Thierry Vignaud <tv@mandriva.org> 2.4.14-20mdv2009.0
++ Revision: 264399
+- rebuild early 2009.0 package (before pixel changes)
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Tue May 20 2008 Oden Eriksson <oeriksson@mandriva.com> 2.4.14-19mdv2009.0
++ Revision: 209420
+- rebuilt with gcc43
+
+* Fri Jan 11 2008 Thierry Vignaud <tv@mandriva.org> 2.4.14-18mdv2008.1
++ Revision: 149163
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+- fix summary-ended-with-dot
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Thu Aug 23 2007 Thierry Vignaud <tv@mandriva.org> 2.4.14-17mdv2008.0
++ Revision: 70167
+- kill ldconfig require as requested by pixel
+- convert prereq
+
+* Wed May 02 2007 Adam Williamson <awilliamson@mandriva.org> 2.4.14-16mdv2008.0
++ Revision: 20348
+- rebuild for new era
+
+
+* Fri May 12 2006 Stefan van der Eijk <stefan@eijk.nu> 2.4.14-15mdk
+- rebuild for sparc
+
+* Sat Dec 31 2005 Mandriva Linux Team <http://www.mandrivaexpert.com/> 2.4.14-14mdk
+- Rebuild
+
+* Tue Aug 09 2005 Gwenole Beauchesne <gbeauchesne@mandriva.com> 2.4.14-13mdk
+- fix deps for parallel build
+
+* Sat Nov 27 2004 Stefan van der Eijk <stefan@mandrake.org> 2.4.14-12mdk
+- patch5: use -fPIC instead of -fpic on sparc64
+
+* Tue Sep 28 2004 Gwenole Beauchesne <gbeauchesne@mandrakesoft.com> 2.4.14-11mdk
+- fix build, libification
+
+* Fri Feb 27 2004 Olivier Thauvin <thauvin@aerov.jussieu.fr> 2.4.14-10mdk
+- Own %%includedir/db2
+
+* Mon Nov 17 2003 Stefan van der Eijk <stefan@eijk.nu> 2.4.14-9mdk
+- rebuild 4 reupload (alpha)
+
+* Tue Jul 22 2003 Per Øyvind Karlsen <peroyvind@sintrax.net> 2.4.14-8mdk
+- rebuild
+- drop Prefix tag
+- use %%make macro
 
