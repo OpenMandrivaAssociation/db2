@@ -1,6 +1,6 @@
 %define name  db2
 %define version 2.4.14
-%define release %mkrel 25
+%define release 26
 
 %define major		2
 %define libname_orig	libdb%{major}
@@ -13,6 +13,7 @@ Release: %{release}
 #Source: http://www.sleepycat.com/update/2.7.7/db-2.7.7.tar.gz
 # Taken from glibc 2.1.3
 Source0: %{name}-glibc-2.1.3.tar.bz2
+Source100: db2.rpmlintrc
 # Patch to make it standalone
 Patch0: db2-glibc-2.1.3.patch
 Patch1: db2-2.4.14-db2.patch
