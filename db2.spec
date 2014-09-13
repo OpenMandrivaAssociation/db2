@@ -61,7 +61,7 @@ building programs which use Berkeley DB.
 %patch7 -p0 -b .LDFLAGS
 
 %build
-CFLAGS="%{optflags}" %make LDFLAGS="%{ldflags}"
+CFLAGS="%{optflags}" %make LDFLAGS="%{ldflags}" CC=%{__cc}
 
 %install
 mkdir -p %{buildroot}%{_includedir}/db2
