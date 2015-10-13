@@ -1,5 +1,6 @@
 %define major	2
 %define libname	%mklibname db %{major}
+%define _disable_lto 1
 
 Summary:	The BSD database library for C (version 2)
 Name:		db2
