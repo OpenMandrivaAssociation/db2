@@ -1,6 +1,8 @@
 %define major	2
 %define libname	%mklibname db %{major}
 %define _disable_lto 1
+# Work around incomplete debug packages
+%global _empty_manifest_terminate_build 0
 
 Summary:	The BSD database library for C (version 2)
 Name:		db2
@@ -105,4 +107,3 @@ done
 %{_bindir}/db2_printlog
 %{_bindir}/db2_recover
 %{_bindir}/db2_stat
-
