@@ -7,7 +7,7 @@
 Summary:	The BSD database library for C (version 2)
 Name:		db2
 Version:	2.7.7
-Release:	38
+Release:	39
 License:	BSD
 Group:		System/Libraries
 #Source: http://www.sleepycat.com/update/2.7.7/db-2.7.7.tar.gz
