@@ -12,7 +12,7 @@ License:	BSD
 Group:		System/Libraries
 #Source: http://www.sleepycat.com/update/2.7.7/db-2.7.7.tar.gz
 # Taken from glibc 2.1.3
-Url:		http://www.sleepycat.com
+Url:		https://www.sleepycat.com
 Source0:	%{name}-glibc-2.1.3.tar.bz2
 Source100:	db2.rpmlintrc
 # Patch to make it standalone
